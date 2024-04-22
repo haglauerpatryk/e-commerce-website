@@ -32,7 +32,7 @@ class Item(
     variable_price = MoneyField(
         max_digits=14, 
         decimal_places=2, 
-        default_currency='GBP', 
+        default_currency='USD', 
         null=True, 
         blank=True)
 
@@ -184,7 +184,7 @@ class Line(
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)   
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, blank=True, null=True)
-    amount = MoneyField(max_digits=14, decimal_places=2, default_currency='GBP', null=True, blank=True)
+    amount = MoneyField(max_digits=14, decimal_places=2, default_currency='USD', null=True, blank=True)
     stripe_id = models.CharField(max_length=100)
     quantity = models.IntegerField(default=1, blank=True,null=True)
 

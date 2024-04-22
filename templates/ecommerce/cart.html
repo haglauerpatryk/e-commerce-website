@@ -12,7 +12,7 @@
     <div class="column item-list-{{object.item.id}}">
       <div class="card">
         
-        <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width:100%">
+        <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width: 50%; height: 50%;">
         <h2>{{object.item.title}}</h2>
         <p class="price">{{object.item.price}}</p>
         <p>{{object.item.description}}</p>
@@ -45,7 +45,7 @@
         </span>
       </h4>
       <hr>
-      <p>Total <span class="price" style="color:black"><b class="item-total-price">£{{request.user.cart.amount|div:100}}</b></span></p>
+      <p>Total <span class="price" style="color:black"><b class="item-total-price">${{request.user.cart.amount|div:100}}</b></span></p>
       <p><a class="btn btn-success" href="{% url 'ecommerce:checkout' %}">Go to checkout</a></p>
     </div>
   </div>
