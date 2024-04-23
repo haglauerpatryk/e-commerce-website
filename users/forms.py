@@ -78,6 +78,10 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ( 'avatar', 'telephone', 'address', 'town', 'county', 'post_code', 'country')
 
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
 
 class UserAlterationForm(forms.ModelForm):
@@ -87,6 +91,12 @@ class UserAlterationForm(forms.ModelForm):
     first_name = forms.CharField(max_length=150, required=True, widget=forms.TextInput())
     last_name = forms.CharField(max_length=150, required=True, widget=forms.TextInput())
     email = forms.EmailField(max_length=254, required=True, widget=forms.EmailInput())
+    
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+
+    def __init__(self, *args, **kwargs):
+        super(UserAlterationForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

@@ -4,11 +4,11 @@
 
 {% block content %}
 <h1>Orders</h1>
-<div class="row card-column">
+<div class="container">
   {% for object in object_list %}
   <div class="column">
     <div class="card">
-      <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width:100%">
+      <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width: 50%; height: 50%;">
       <h2>{{object.item.title}}</h2>
       <p class="price">{{object.item.variable_price}}</p>
       <p>{{object.item.description}}</p>

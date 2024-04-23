@@ -60,26 +60,73 @@
 {% endblock %}
 
 {% block content %}
-<h1>Welcome to your account {{request.user.userprofile.full_name}}</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="col-sm-4 text-center">
-        <div class="kv-avatar">
-            <div class="file-loading">
+
+<div class="container-fluid p-5">
+  <div class="row">
+
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      <div class="row">
+        <div class="col-sm-4 text-center card mb-3 px-4 shadow">
+          <form method="POST" enctype="multipart/form-data">
+          <!-- Avatar section -->
+          <br/>
+            {% csrf_token %}
+            <div class="kv-avatar">
+              <div class="file-loading">
                 <input id="id_avatar" name="avatar" type="file">
+              </div>
             </div>
+            <div class="kv-avatar-hint">
+              <small>Select file < 1500 KB</small>
+            </div>
+          <div id="kv-avatar-errors-1" class="text-center" style="display:none"></div>
         </div>
-        <div class="kv-avatar-hint">
-            <small>Select file < 1500 KB</small>
+
+        <div class="col-sm-1"></div>
+        
+        <div class="col-sm-7 card mb-3 px-4 shadow">
+          <h1>Welcome to your account {{ request.user.userprofile.full_name }}!</h1>
+          <br/>
+          <table class="table table-borderless">
+            <tr>
+              <td><label>Telephone:</label></td>
+              <td>{{ form.telephone }}</td>
+            </tr>
+            <tr>
+              <td><label>Address:</label></td>
+              <td>{{ form.address }}</td>
+            </tr>
+            <tr>
+              <td><label>Town:</label></td>
+              <td>{{ form.town }}</td>
+            </tr>
+            <tr>
+              <td><label>County:</label></td>
+              <td>{{ form.county }}</td>
+            </tr>
+            <tr>
+              <td><label>Post Code:</label></td>
+              <td>{{ form.post_code }}</td>
+            </tr>
+            <tr>
+              <td><label>Country:</label></td>
+              <td>{{ form.country }}</td>
+            </tr>
+          </table>
+          <div>
+            <button type="submit" class="btn btn-success btn-block">Submit!</button>
+          </div>
+          <br/><br/>
+          </form>
         </div>
+      </div>
     </div>
-    <p><label>Telephone:</label>{{form.telephone}}</p>
-    <p><label>Address:</label>{{form.address}}</p>
-    <p><label>Town:</label>{{form.town}}</p>
-    <p><label>County:</label>{{form.county}}</p>
-    <p><label>Post Code:</label>{{form.post_code}}</p>
-    <p><label>Country:</label>{{form.country}}</p>
-    <button type="submit">Submit!</button>
-</form>
-<div id="kv-avatar-errors-1" class="text-center" style="display:none"></div>
+
+    <div class="col-1"></div>
+
+  </div>
+</div>
+
 {% endblock %}
