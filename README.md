@@ -13,4 +13,3 @@ The main features include:
 Currently trying to work on:
   - Debugging, there are a few small ones to tweak.
   - Rating system.
-  - Frontend, because even though it works it doesn't look like, well... anything.
