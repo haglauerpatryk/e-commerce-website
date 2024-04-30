@@ -5,9 +5,9 @@
 <br/><br/>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="card mb-3 px-4 shadow">
+    <div class="card mb-3 px-4 shadow" style="width: 30rem;">
       <br/>
-      <h1>Info - {{request.user.userprofile.full_name}}</h1>
+      <h2>Info - {{request.user.userprofile.full_name}}</h2>
       <br/>
       <form method="POST">
         {% csrf_token %}

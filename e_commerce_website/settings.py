@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'core',
     'ecommerce',
     'users', 
+    'blog',
     'django_extensions',
     'djmoney',
     'fontawesomefree',

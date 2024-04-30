@@ -43,7 +43,7 @@ class AuthForm(AuthenticationForm):
     username, even though it is included within AuthenticationForm, we add it here,
     to make it consistent with UserForm.
     '''
-    username = forms.CharField(max_length=150, required=True, widget=forms.TextInput())
+    username = forms.CharField(max_length=150, required=True, widget=forms.TextInput(attrs={"autofocus": True}))
 
     class Meta:
         model = User

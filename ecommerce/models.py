@@ -11,9 +11,9 @@ from django_extensions.db.models import (
 
 
 class Item(
-    TimeStampedModel,
-    ActivatorModel ,
-    TitleSlugDescriptionModel,
+    TimeStampedModel, # provides created and modified fields
+    ActivatorModel ,  # provides activate and deactivate fields
+    TitleSlugDescriptionModel, # provides title, description and slug fields
     models.Model):
 
     """

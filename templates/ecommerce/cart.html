@@ -3,51 +3,158 @@
 
 {% block content %}
 
-<h1>Cart</h1>
+<div class="untree_co-section before-footer-section">
+  <div class="container">
+    <div class="row mb-5">
+      <form class="col-md-12" method="post">
+        <div class="site-blocks-table">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="product-thumbnail">Image</th>
+                <th class="product-name">Product</th>
+                <th class="product-price">Price</th>
+                <th class="product-quantity">Quantity</th>
+                <th class="product-total">Total</th>
+                <th class="product-remove">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for object in request.user.cart.items.all %}
+              <tr>
+                <td class="product-thumbnail">
+                  <img src="{{ object.item.image.url }}" alt="{{ object.item.title }}" class="img-fluid">
+                </td>
+                <td class="product-name">
+                  <h2 class="h5 text-black">{{ object.item.title }}</h2>
+                </td>
+                <td>{{ object.item.variable_price }}</td>
+                <td>
+                  <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                    <div class="input-group-prepend">
+                      <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                    </div>
+                    <input type="text" class="form-control text-center quantity-amount" value="{{object.quantity}}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" id="quantity-input-{{object.id}}" name="quantity-{{object.id}}">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                    </div>
+                  </div>
+                </td>
+                <td>$49.00</td>
+                <td>{% item_button_v2 object.item %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
 
-
-<div class="row">
-  <div class="col-75">
-    {% for object in request.user.cart.items.all %}
-    <div class="column item-list-{{object.item.id}}">
-      <div class="card">
-        
-        <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width: 50%; height: 50%;">
-        <h2>{{object.item.title}}</h2>
-        <p class="price">{{object.item.price}}</p>
-        <p>{{object.item.description}}</p>
-        <p>  
-          <form>
-            <div class="form-group row">
-              <div class="col-sm-2">
-              {% item_button_v2 object.item %}
-              </div>
-              <label for="quantity" class="col-sm-4 col-form-label">Quantity</label>
-              <div class="col-sm-6">
-                <input readonly class="form-control-plaintext" name="quantity-{{object.id}}" id="quantity-input-{{object.id}}" class="quantity-input-{{object.id}}" value="{{object.quantity}}">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row mb-5">
+          <div class="col-md-6 mb-3 mb-md-0">
+            <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label class="text-black h4" for="coupon">Coupon</label>
+            <p>Enter your coupon code if you have one.</p>
+          </div>
+          <div class="col-md-8 mb-3 mb-md-0">
+            <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-black">Apply Coupon</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 pl-5">
+        <div class="row justify-content-end">
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12 text-right border-bottom mb-5">
+                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
               </div>
             </div>
-            
-          </form>
-        </p>
-        <p><a class="btn btn-primary" href="{{object.item.get_absolute_url}}" >&#x2607;</a></p>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <span class="text-black">Subtotal</span>
+              </div>
+              <div class="col-md-6 text-right">
+                <strong class="text-black">$230.00</strong>
+              </div>
+            </div>
+            <div class="row mb-5">
+              <div class="col-md-6">
+                <span class="text-black">Total</span>
+              </div>
+              <div class="col-md-6 text-right">
+                <strong class="text-black">$230.00</strong>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+</div>
 
-  <div class="col-25">
-    <div class="container">
-      <h4>Summary
+<h1>Cart</h1>
+
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-8 card">
+      <br/>
+      {% for object in request.user.cart.items.all %}
+      <div class="row">
+        <div class="col">
+          <img src="{{object.item.image.url}}" alt="{{object.item.title}}" style="width: 100px; height: 100px;">
+        </div>
+        <div class="col">
+          <p class="font-weight-bold">{{object.item.title}}</p>
+        </div>
+        <div class="col">
+          <p class="price">{{object.item.variable_price}}</p>
+        </div>
+        <div class="col">
+          <form>
+          <input readonly name="quantity-{{object.id}}" id="quantity-input-{{object.id}}" class="quantity-input-{{object.id}}" value="{{object.quantity}}">
+          {% item_button_v2 object.item %}
+        </form>
+        </div>
+        <div class="col">
+          <p><a class="btn btn-primary" href="{{object.item.get_absolute_url}}" >&#x2607;</a></p>
+        </div>
+      </div>
+      <hr>
+      {% endfor %}
+    </div>
+
+    <div class="col-4">
+      <div class="card">
+        <h4>Summary
         <span class="price" style="color:black">
           <i class="fa fa-cart-shopping"></i>
           <b class="item-count">{{request.user.cart.item_count}}</b>
         </span>
-      </h4>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b class="item-total-price">${{request.user.cart.amount|div:100}}</b></span></p>
-      <p><a class="btn btn-success" href="{% url 'ecommerce:checkout' %}">Go to checkout</a></p>
+        </h4>
+        <hr>
+        <p>Total <span class="price" style="color:black"><b class="item-total-price">${{request.user.cart.amount|div:100}}</b></span></p>
+        <p><a class="btn btn-success" href="{% url 'ecommerce:checkout' %}">Go to checkout</a></p>
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock %}

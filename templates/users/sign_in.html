@@ -1,32 +1,35 @@
 {% extends 'base/base.html' %}
 
+{% block testimonials %}
+{% endblock %}
+
 {% block content %}
 <br/><br/>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="card mb-3 px-4 shadow">
+    <div class="card mb-3 px-4 shadow" style="width: 30rem;">
       <br/>
       <h1 class="text-center">Sign in</h1>
       <br/>
       <form method="POST">
-          {% csrf_token %}
-          {{form.as_p}}
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-auto">
-                <button type="submit" class="btn btn-success">Submit!</button>
-              </div>
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <button type="submit" class="btn btn-success">Submit!</button>
             </div>
           </div>
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-auto">
-                <br/>
-                New user? <a href="{% url 'users:sign-up' %}">Sign up</a>
-                <br/><br/>
-              </div>
+        </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-auto">
+              <br/>
+              New user? <a href="{% url 'users:sign-up' %}">Sign up</a>
+              <br/><br/>
             </div>
           </div>
+        </div>
       </form>
     </div>
   </div>
